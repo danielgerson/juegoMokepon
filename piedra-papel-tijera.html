@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piedra, Papel o Tijera</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piedra, Papel o Tijera</title>
 
-  <script>
-    /* 1. Piedra, 2. Papel, 3. Tijeras */
+    <script>
+      /* 1. Piedra, 2. Papel, 3. Tijeras */
 
-    function aleatorio (min, max) {
-      return  Math.floor(Math.random() * (max - min + 1) + min);
-    }
-    let jugador = 0;
-    let pc = aleatorio(1,3);
+      function aleatorio(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
 
-    jugador = prompt("Elige: 1 para piedra, 2 para papel o 3 para tijera: ");
-    //alert("Elegiste: " + jugador);
-    if(jugador == 1) {
-      alert("Elegiste piedra");
-    } else if(jugador == 2) {
-      alert("Elegiste papel");
-    } else if(jugador == 3) {
-      alert("Elegiste tijera");
-    } else {
-      alert("Elegiste PERDER");
-    }
-    if(pc == 1) {
-      alert("PC elegio piedra");
-    } else if(pc == 2) {
-      alert("PC elegio papel");
-    } else if(pc == 3) {
-      alert("PC elegio tijera");
-    } else {
-      alert("PC eligio PERDER");
-    }
+      function eleccion(jugada) {
+        let resultado = "";
 
-    // COMBATE
-    if(pc == jugador) {
-      alert("EMPATE");
-    } else if (jugador == 1 && pc == 3 ) {
-      alert("GANASTE");
-    } else if(jugador == 2 && pc == 1 ) {
-      alert("GANASTE");
-    } else if (jugador == 3 && pc == 2) {
-      alert("GANASTE");
-    } else {
-      alert("PERDISTE");
-    }
-  </script>
-</head>
-<body>
-  <h1>Piedra, Papel o Tijera</h1>
-</body>
+        if (jugada == 1) {
+          resultado ="Piedra";
+        } else if (jugada == 2) {
+          resultado = "Papel";
+        } else if (jugada == 3) {
+          resultado = "Tijera";
+        } else {
+          resultado = "MAL ELEGIDO";
+        }
+        return resultado;
+      }
+
+      let jugador = 0;
+      let pc = aleatorio(1, 3);
+
+      jugador = prompt("Elige: 1 para piedra, 2 para papel o 3 para tijera: ");
+      //alert("Elegiste: " + jugador);
+
+      alert("PC elige: " + eleccion(pc));
+      alert("Tú eliges: " + eleccion(jugador));
+
+      // COMBATE
+      if (pc == jugador) {
+        alert("EMPATE");
+      } else if (jugador == 1 && pc == 3) {
+        alert("GANASTE");
+      } else if (jugador == 2 && pc == 1) {
+        alert("GANASTE");
+      } else if (jugador == 3 && pc == 2) {
+        alert("GANASTE");
+      } else {
+        alert("PERDISTE");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Piedra, Papel o Tijera</h1>
+  </body>
 </html>
