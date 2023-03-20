@@ -12,9 +12,32 @@
     <section id="mascotas">
       <h2>Elige a tu Mokepon:</h2>
 
-      Mokepon
+      <label for="hipodoge">Hipodoge</label>
+      <input type="radio" name="mokepon" id="hipodoge" />
 
-      <button>Seleccionar</button>
+      <label for="capipepo">Capipepo</label>
+      <input type="radio" name="mokepon" id="capipepo" />
+
+      <label for="ratigueya">Ratigueya</label>
+      <input type="radio" name="mokepon" id="ratigueya" />
+
+      <!-- <label for="langostelvis">Langostelvis</label>
+      <input type="radio" name="mokepon" id="langostelvis" />
+
+      <label for="tucapalma">Tucapalma</label>
+      <input type="radio" name="mokepon" id="tucapalma" />
+
+      <label for="pydos">Pydos</label>
+      <input type="radio" name="mokepon" id="pydos" /> -->
+
+      <!-- Hipodoge -> 💧
+      Capipepo -> 🌿
+      Ratigueya -> 🔥
+      Langostelvis -> 💧🔥
+      Tucapalma -> 💧🌿
+      Pydos -> 🔥🌿
+ -->
+      <button id="btn-seleccionar">Seleccionar</button>
     </section>
 
     <section id="ataques">
@@ -22,19 +45,23 @@
       <p>Tu Mokepon tiene <span>3</span> vidas</p>
       <p>El Mokepon enemigo tiene <span>3</span> vidas</p>
       <p>
-        <button>Fuego 🔥</button>
-        <button>Agua 💧</button>
-        <button>Tierra 🌿</button>
+        <button id="btn-fuego">Fuego 🔥</button>
+        <button id="btn-agua">Agua 💧</button>
+        <button id="btn-tierra">Tierra 🌿</button>
       </p>
     </section>
 
     <section id="mensajes">
-      <p>Tu Mokenpon ataco con FUEGO, el mokepon enemigo ataco con Tierra - GANASTE! 🤩</p>
+      <p>
+        Tu Mokenpon ataco con FUEGO, el mokepon enemigo ataco con Tierra -
+        GANASTE! 🤩
+      </p>
     </section>
 
     <section id="reiniciar-juego">
-      <button>Reiniciar</button>
+      <button id="btn-reiniciar">Reiniciar</button>
     </section>
 
+    <script src="./js/mokepon.js"></script>
   </body>
 </html>
