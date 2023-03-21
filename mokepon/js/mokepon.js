@@ -1,5 +1,6 @@
 const d = document;
 let ataqueJugador;
+let ataqueEnemigo;
 
 function iniciarJuego() {
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
@@ -33,7 +34,7 @@ function seleccionarMokeponJugador() {
 }
 
 function seleccionarMokeponEnemigo() {
-  let mokeponAleatorio = mokeponEnemigoAleatorio(1,3);
+  let mokeponAleatorio = aleatorio(1,3);
   let $spanMokeponEnemigo = d.getElementById('mokepon-enemigo');
 
   if (mokeponAleatorio == 1 ) {
@@ -48,19 +49,36 @@ function seleccionarMokeponEnemigo() {
 function ataqueFuego() {
   ataqueJugador = 'FUEGO';
   alert(ataqueJugador);
+  ataqueEnemigoAleatorio();
 }
 
 function ataqueAgua() {
   ataqueJugador = 'AGUA';
   alert(ataqueJugador);
+  ataqueEnemigoAleatorio();
 }
 
 function ataqueTierra() {
   ataqueJugador = 'TIERRA';
   alert(ataqueJugador);
+  ataqueEnemigoAleatorio();
 }
 
-function mokeponEnemigoAleatorio(min, max) {
+function ataqueEnemigoAleatorio() {
+  let numeroAtaqueEnemigo = aleatorio(1,3);
+  if (numeroAtaqueEnemigo == 1 ) {
+    ataqueEnemigo = 'FUEGO'
+    alert(`El enemigo ataco con ${ataqueEnemigo}`)
+  } else if (numeroAtaqueEnemigo == 2 ) {
+    ataqueEnemigo = 'AGUA'
+    alert(`El enemigo ataco con ${ataqueEnemigo}`)
+  } else {
+    ataqueEnemigo = 'TIERRA'
+    alert(`El enemigo ataco con ${ataqueEnemigo}`)
+  }
+}
+
+function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
