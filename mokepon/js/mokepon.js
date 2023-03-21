@@ -76,6 +76,17 @@ function ataqueEnemigoAleatorio() {
     ataqueEnemigo = 'TIERRA'
     alert(`El enemigo ataco con ${ataqueEnemigo}`)
   }
+
+  crearMensaje();
+}
+
+function crearMensaje () {
+  let $seccionMensaje = d.getElementById('mensajes');
+
+  let $mensajeParrafo = d.createElement("p");
+  $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - PENDIENTE`;
+  
+  $seccionMensaje.appendChild($mensajeParrafo);
 }
 
 function aleatorio(min, max) {
