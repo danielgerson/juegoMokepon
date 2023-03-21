@@ -9,13 +9,14 @@ function seleccionarMokeponJugador() {
   let $btnHipodoge = d.getElementById('hipodoge');
   let $btnCapipepo = d.getElementById('capipepo');
   let $btnRatigueya = d.getElementById('ratigueya');
+  let $spanMokeponJugador = d.getElementById('mokepon-jugador');
 
   if($btnHipodoge.checked) {
-    alert("Elegiste a Hipodoge");
+    $spanMokeponJugador.innerHTML = 'Hipodoge';
   } else if ($btnCapipepo.checked) {
-    alert("Elegiste a Capipepo");
+    $spanMokeponJugador.innerHTML = 'Capipepo';
   } else if ($btnRatigueya.checked) {
-    alert("Elegiste a Ratigueya");
+    $spanMokeponJugador.innerHTML = 'Ratigueya';
   } else {
     alert("Selecciona un Mokepon");
   }
