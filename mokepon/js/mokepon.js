@@ -1,8 +1,16 @@
 const d = document;
+let ataqueJugador;
 
 function iniciarJuego() {
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
+
+  let $btnFuego = d.getElementById('btn-fuego');
+  $btnFuego.addEventListener('click', ataqueFuego);
+  let $btnAgua = d.getElementById('btn-agua');
+  $btnAgua.addEventListener('click', ataqueAgua);
+  let $btnTierra = d.getElementById('btn-tierra');
+  $btnTierra.addEventListener('click', ataqueTierra);
 }
 
 function seleccionarMokeponJugador() {
@@ -35,6 +43,21 @@ function seleccionarMokeponEnemigo() {
   } else {
     $spanMokeponEnemigo.innerHTML = 'Ratigueya';
   } 
+}
+
+function ataqueFuego() {
+  ataqueJugador = 'FUEGO';
+  alert(ataqueJugador);
+}
+
+function ataqueAgua() {
+  ataqueJugador = 'AGUA';
+  alert(ataqueJugador);
+}
+
+function ataqueTierra() {
+  ataqueJugador = 'TIERRA';
+  alert(ataqueJugador);
 }
 
 function mokeponEnemigoAleatorio(min, max) {
