@@ -1,6 +1,7 @@
 const d = document;
 let ataqueJugador;
 let ataqueEnemigo;
+let resultadoJuego;
 
 function iniciarJuego() {
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
@@ -77,14 +78,33 @@ function ataqueEnemigoAleatorio() {
     alert(`El enemigo ataco con ${ataqueEnemigo}`)
   }
 
-  crearMensaje();
+  combate();
+}
+
+function combate() {
+  if (ataqueJugador == ataqueEnemigo) {
+    resultadoJuego = 'EMPATASTE';
+    crearMensaje();
+  } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
+    resultadoJuego = 'GANASTE';
+    crearMensaje();
+  } else if (ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO' ) {
+    resultadoJuego = 'GANASTE';
+    crearMensaje();
+  } else if (ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') {
+    resultadoJuego = 'GANASTE';
+    crearMensaje();
+  } else {
+    resultadoJuego = 'PERDISTE';
+    crearMensaje();
+  };
 }
 
 function crearMensaje () {
   let $seccionMensaje = d.getElementById('mensajes');
 
   let $mensajeParrafo = d.createElement("p");
-  $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - PENDIENTE`;
+  $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - ${resultadoJuego}`;
   
   $seccionMensaje.appendChild($mensajeParrafo);
 }
