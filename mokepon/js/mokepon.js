@@ -105,6 +105,15 @@ function combate() {
     vidasJugador--;
     $spanVidasJugador.innerHTML = vidasJugador;
   };
+  contadorVidas();
+}
+
+function contadorVidas() {
+  if (vidasEnemigo == 0){
+    crearMensajeJuego('GANASTE!. La PC no tiene vidas.')
+  } else if (vidasJugador == 0) {
+    crearMensajeJuego('PERDISTE!. Ya no tienes vidas para seguir jugando');
+  }
 }
 
 function crearMensaje () {
@@ -112,6 +121,15 @@ function crearMensaje () {
 
   let $mensajeParrafo = d.createElement("p");
   $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - ${resultadoJuego}`;
+  
+  $seccionMensaje.appendChild($mensajeParrafo);
+}
+
+function crearMensajeJuego (resultadoJuegoFinal) {
+  let $seccionMensaje = d.getElementById('mensajes');
+
+  let $mensajeParrafo = d.createElement("p");
+  $mensajeParrafo.innerHTML = resultadoJuegoFinal;
   
   $seccionMensaje.appendChild($mensajeParrafo);
 }
