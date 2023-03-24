@@ -2,6 +2,8 @@ const d = document;
 let ataqueJugador;
 let ataqueEnemigo;
 let resultadoJuego;
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 
 function iniciarJuego() {
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
@@ -49,19 +51,16 @@ function seleccionarMokeponEnemigo() {
 
 function ataqueFuego() {
   ataqueJugador = 'FUEGO';
-  alert(ataqueJugador);
   ataqueEnemigoAleatorio();
 }
 
 function ataqueAgua() {
   ataqueJugador = 'AGUA';
-  alert(ataqueJugador);
   ataqueEnemigoAleatorio();
 }
 
 function ataqueTierra() {
   ataqueJugador = 'TIERRA';
-  alert(ataqueJugador);
   ataqueEnemigoAleatorio();
 }
 
@@ -69,34 +68,42 @@ function ataqueEnemigoAleatorio() {
   let numeroAtaqueEnemigo = aleatorio(1,3);
   if (numeroAtaqueEnemigo == 1 ) {
     ataqueEnemigo = 'FUEGO'
-    alert(`El enemigo ataco con ${ataqueEnemigo}`)
   } else if (numeroAtaqueEnemigo == 2 ) {
     ataqueEnemigo = 'AGUA'
-    alert(`El enemigo ataco con ${ataqueEnemigo}`)
   } else {
     ataqueEnemigo = 'TIERRA'
-    alert(`El enemigo ataco con ${ataqueEnemigo}`)
   }
 
   combate();
 }
 
 function combate() {
+  let $spanVidasJugador = d.getElementById('vidas-jugador');
+  let $spanVidasEnemigo = d.getElementById('vidas-enemigo');
+
   if (ataqueJugador == ataqueEnemigo) {
     resultadoJuego = 'EMPATASTE';
     crearMensaje();
   } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
     resultadoJuego = 'GANASTE';
     crearMensaje();
+    vidasEnemigo--;
+    $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO' ) {
     resultadoJuego = 'GANASTE';
     crearMensaje();
+    vidasEnemigo--;
+    $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') {
     resultadoJuego = 'GANASTE';
     crearMensaje();
+    vidasEnemigo--;
+    $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else {
     resultadoJuego = 'PERDISTE';
     crearMensaje();
+    vidasJugador--;
+    $spanVidasJugador.innerHTML = vidasJugador;
   };
 }
 
