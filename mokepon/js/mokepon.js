@@ -7,131 +7,163 @@ let vidasEnemigo = 3;
 
 function iniciarJuego() {
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
+  let $btnFuego = d.getElementById("btn-fuego");
+  let $btnAgua = d.getElementById("btn-agua");
+  let $btnTierra = d.getElementById("btn-tierra");
+  let $btnReiniciar = d.getElementById("btn-reiniciar");
+
+  $btnFuego.disabled = true;
+  $btnAgua.disabled = true;
+  $btnTierra.disabled = true;
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
 
-  let $btnFuego = d.getElementById('btn-fuego');
-  $btnFuego.addEventListener('click', ataqueFuego);
-  let $btnAgua = d.getElementById('btn-agua');
-  $btnAgua.addEventListener('click', ataqueAgua);
-  let $btnTierra = d.getElementById('btn-tierra');
-  $btnTierra.addEventListener('click', ataqueTierra);
+  $btnFuego.addEventListener("click", ataqueFuego);
+  $btnAgua.addEventListener("click", ataqueAgua);
+  $btnTierra.addEventListener("click", ataqueTierra);
+
+  $btnReiniciar.addEventListener("click", reiniciar);
 }
 
 function seleccionarMokeponJugador() {
-  let $btnHipodoge = d.getElementById('hipodoge');
-  let $btnCapipepo = d.getElementById('capipepo');
-  let $btnRatigueya = d.getElementById('ratigueya');
-  let $spanMokeponJugador = d.getElementById('mokepon-jugador');
-  
-  if($btnHipodoge.checked) {
-    $spanMokeponJugador.innerHTML = 'Hipodoge';
+  let $btnHipodoge = d.getElementById("hipodoge");
+  let $btnCapipepo = d.getElementById("capipepo");
+  let $btnRatigueya = d.getElementById("ratigueya");
+  let $spanMokeponJugador = d.getElementById("mokepon-jugador");
+
+  let $btnFuego = d.getElementById("btn-fuego");
+  let $btnAgua = d.getElementById("btn-agua");
+  let $btnTierra = d.getElementById("btn-tierra");
+
+  if ($btnHipodoge.checked) {
+    $spanMokeponJugador.innerHTML = "Hipodoge";
+    $btnFuego.disabled = false;
+    $btnAgua.disabled = false;
+    $btnTierra.disabled = false;
   } else if ($btnCapipepo.checked) {
-    $spanMokeponJugador.innerHTML = 'Capipepo';
+    $spanMokeponJugador.innerHTML = "Capipepo";
+    $btnFuego.disabled = false;
+    $btnAgua.disabled = false;
+    $btnTierra.disabled = false;
   } else if ($btnRatigueya.checked) {
-    $spanMokeponJugador.innerHTML = 'Ratigueya';
+    $spanMokeponJugador.innerHTML = "Ratigueya";
+    $btnFuego.disabled = false;
+    $btnAgua.disabled = false;
+    $btnTierra.disabled = false;
   } else {
     alert("Selecciona un Mokepon");
   }
-  
-    seleccionarMokeponEnemigo();
+
+  seleccionarMokeponEnemigo();
 }
 
 function seleccionarMokeponEnemigo() {
-  let mokeponAleatorio = aleatorio(1,3);
-  let $spanMokeponEnemigo = d.getElementById('mokepon-enemigo');
+  let mokeponAleatorio = aleatorio(1, 3);
+  let $spanMokeponEnemigo = d.getElementById("mokepon-enemigo");
 
-  if (mokeponAleatorio == 1 ) {
-    $spanMokeponEnemigo.innerHTML = 'Hipodoge';
-  } else if (mokeponAleatorio == 2 ) {
-    $spanMokeponEnemigo.innerHTML = 'Capipepo';
+  if (mokeponAleatorio == 1) {
+    $spanMokeponEnemigo.innerHTML = "Hipodoge";
+  } else if (mokeponAleatorio == 2) {
+    $spanMokeponEnemigo.innerHTML = "Capipepo";
   } else {
-    $spanMokeponEnemigo.innerHTML = 'Ratigueya';
-  } 
+    $spanMokeponEnemigo.innerHTML = "Ratigueya";
+  }
 }
 
 function ataqueFuego() {
-  ataqueJugador = 'FUEGO';
+  ataqueJugador = "FUEGO";
   ataqueEnemigoAleatorio();
 }
 
 function ataqueAgua() {
-  ataqueJugador = 'AGUA';
+  ataqueJugador = "AGUA";
   ataqueEnemigoAleatorio();
 }
 
 function ataqueTierra() {
-  ataqueJugador = 'TIERRA';
+  ataqueJugador = "TIERRA";
   ataqueEnemigoAleatorio();
 }
 
 function ataqueEnemigoAleatorio() {
-  let numeroAtaqueEnemigo = aleatorio(1,3);
-  if (numeroAtaqueEnemigo == 1 ) {
-    ataqueEnemigo = 'FUEGO'
-  } else if (numeroAtaqueEnemigo == 2 ) {
-    ataqueEnemigo = 'AGUA'
+  let numeroAtaqueEnemigo = aleatorio(1, 3);
+  if (numeroAtaqueEnemigo == 1) {
+    ataqueEnemigo = "FUEGO";
+  } else if (numeroAtaqueEnemigo == 2) {
+    ataqueEnemigo = "AGUA";
   } else {
-    ataqueEnemigo = 'TIERRA'
+    ataqueEnemigo = "TIERRA";
   }
 
   combate();
 }
 
 function combate() {
-  let $spanVidasJugador = d.getElementById('vidas-jugador');
-  let $spanVidasEnemigo = d.getElementById('vidas-enemigo');
+  let $spanVidasJugador = d.getElementById("vidas-jugador");
+  let $spanVidasEnemigo = d.getElementById("vidas-enemigo");
 
   if (ataqueJugador == ataqueEnemigo) {
-    resultadoJuego = 'EMPATASTE';
+    resultadoJuego = "EMPATASTE";
     crearMensaje();
-  } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
-    resultadoJuego = 'GANASTE';
-    crearMensaje();
-    vidasEnemigo--;
-    $spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO' ) {
-    resultadoJuego = 'GANASTE';
+  } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") {
+    resultadoJuego = "GANASTE";
     crearMensaje();
     vidasEnemigo--;
     $spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') {
-    resultadoJuego = 'GANASTE';
+  } else if (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") {
+    resultadoJuego = "GANASTE";
+    crearMensaje();
+    vidasEnemigo--;
+    $spanVidasEnemigo.innerHTML = vidasEnemigo;
+  } else if (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA") {
+    resultadoJuego = "GANASTE";
     crearMensaje();
     vidasEnemigo--;
     $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else {
-    resultadoJuego = 'PERDISTE';
+    resultadoJuego = "PERDISTE";
     crearMensaje();
     vidasJugador--;
     $spanVidasJugador.innerHTML = vidasJugador;
-  };
+  }
   contadorVidas();
 }
 
 function contadorVidas() {
-  if (vidasEnemigo == 0){
-    crearMensajeJuego('GANASTE!. La PC no tiene vidas.')
+  if (vidasEnemigo == 0) {
+    crearMensajeJuego("GANASTE!. La PC no tiene vidas.");
   } else if (vidasJugador == 0) {
-    crearMensajeJuego('PERDISTE!. Ya no tienes vidas para seguir jugando');
+    crearMensajeJuego("PERDISTE!. Ya no tienes vidas para seguir jugando");
   }
 }
 
-function crearMensaje () {
-  let $seccionMensaje = d.getElementById('mensajes');
+function reiniciar() {
+  location.reload();
+}
+
+function crearMensaje() {
+  let $seccionMensaje = d.getElementById("mensajes");
 
   let $mensajeParrafo = d.createElement("p");
   $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - ${resultadoJuego}`;
-  
+
   $seccionMensaje.appendChild($mensajeParrafo);
 }
 
-function crearMensajeJuego (resultadoJuegoFinal) {
-  let $seccionMensaje = d.getElementById('mensajes');
+function crearMensajeJuego(resultadoJuegoFinal) {
+  let $seccionMensaje = d.getElementById("mensajes");
 
   let $mensajeParrafo = d.createElement("p");
   $mensajeParrafo.innerHTML = resultadoJuegoFinal;
-  
+
   $seccionMensaje.appendChild($mensajeParrafo);
+
+  let $btnFuego = d.getElementById("btn-fuego");
+  let $btnAgua = d.getElementById("btn-agua");
+  let $btnTierra = d.getElementById("btn-tierra");
+
+  $btnFuego.disabled = true;
+  $btnAgua.disabled = true;
+  $btnTierra.disabled = true;
 }
 
 function aleatorio(min, max) {
