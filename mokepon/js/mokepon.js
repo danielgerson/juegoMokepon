@@ -6,15 +6,18 @@ let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 function iniciarJuego() {
+  let $seccionAtaques = d.getElementById("ataques");
+  $seccionAtaques.style.display = "none";
+
+  let $seccionReiniciar = d.getElementById('reiniciar-juego');
+  $seccionReiniciar.style.display = 'none';
+
   let $btnSeleccionar = d.getElementById("btn-seleccionar");
   let $btnFuego = d.getElementById("btn-fuego");
   let $btnAgua = d.getElementById("btn-agua");
   let $btnTierra = d.getElementById("btn-tierra");
   let $btnReiniciar = d.getElementById("btn-reiniciar");
 
-  $btnFuego.disabled = true;
-  $btnAgua.disabled = true;
-  $btnTierra.disabled = true;
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
 
   $btnFuego.addEventListener("click", ataqueFuego);
@@ -25,32 +28,26 @@ function iniciarJuego() {
 }
 
 function seleccionarMokeponJugador() {
+  let $seccionAtaques = d.getElementById("ataques");
+  $seccionAtaques.style.display = "block";
+
+  let $seccionMokepones = d.getElementById("mokepones");
+  $seccionMokepones.style.display = "none";
+
   let $btnHipodoge = d.getElementById("hipodoge");
   let $btnCapipepo = d.getElementById("capipepo");
   let $btnRatigueya = d.getElementById("ratigueya");
   let $spanMokeponJugador = d.getElementById("mokepon-jugador");
 
-  let $btnFuego = d.getElementById("btn-fuego");
-  let $btnAgua = d.getElementById("btn-agua");
-  let $btnTierra = d.getElementById("btn-tierra");
-
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = "Hipodoge";
-    $btnFuego.disabled = false;
-    $btnAgua.disabled = false;
-    $btnTierra.disabled = false;
   } else if ($btnCapipepo.checked) {
     $spanMokeponJugador.innerHTML = "Capipepo";
-    $btnFuego.disabled = false;
-    $btnAgua.disabled = false;
-    $btnTierra.disabled = false;
   } else if ($btnRatigueya.checked) {
     $spanMokeponJugador.innerHTML = "Ratigueya";
-    $btnFuego.disabled = false;
-    $btnAgua.disabled = false;
-    $btnTierra.disabled = false;
   } else {
     alert("Selecciona un Mokepon");
+    $seccionAtaques.style.display = "none";
   }
 
   seleccionarMokeponEnemigo();
@@ -160,6 +157,9 @@ function crearMensajeJuego(resultadoJuegoFinal) {
   let $btnFuego = d.getElementById("btn-fuego");
   let $btnAgua = d.getElementById("btn-agua");
   let $btnTierra = d.getElementById("btn-tierra");
+
+  let $seccionReiniciar = d.getElementById('reiniciar-juego');
+  $seccionReiniciar.style.display = 'block';
 
   $btnFuego.disabled = true;
   $btnAgua.disabled = true;
