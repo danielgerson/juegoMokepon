@@ -105,8 +105,9 @@ input {
   font-family: 'Righteous', cursive;
   font-size: 16px;
   padding: 20px;
+  box-sizing: border-box;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
   border-radius: 20px;
   display: flex;
@@ -132,4 +133,21 @@ input {
   cursor: pointer;
   background-color: #f5eaea;
   color: #dc5f00;
+}
+
+.container-vidas {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  align-items: center;
+  text-align: center;
+}
+
+.container-mensaje {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  font-size: 16px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin: 5px;
 }
