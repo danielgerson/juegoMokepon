@@ -1,7 +1,6 @@
 const d = document;
 let ataqueJugador;
 let ataqueEnemigo;
-let resultadoJuego;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -99,26 +98,21 @@ function combate() {
   let $spanVidasEnemigo = d.getElementById("vidas-enemigo");
 
   if (ataqueJugador == ataqueEnemigo) {
-    resultadoJuego = "EMPATASTE";
-    crearMensaje();
+    crearMensaje("EMPATASTE");
   } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") {
-    resultadoJuego = "GANASTE";
-    crearMensaje();
+    crearMensaje("GANASTE");
     vidasEnemigo--;
     $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") {
-    resultadoJuego = "GANASTE";
-    crearMensaje();
+    crearMensaje("GANASTE");
     vidasEnemigo--;
     $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA") {
-    resultadoJuego = "GANASTE";
-    crearMensaje();
+    crearMensaje("GANASTE");
     vidasEnemigo--;
     $spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else {
-    resultadoJuego = "PERDISTE";
-    crearMensaje();
+    crearMensaje("PERDISTE");
     vidasJugador--;
     $spanVidasJugador.innerHTML = vidasJugador;
   }
@@ -137,22 +131,26 @@ function reiniciar() {
   location.reload();
 }
 
-function crearMensaje() {
-  let $seccionMensaje = d.getElementById("mensajes");
+function crearMensaje(resultadoJuego) {
+  let $seccionMensaje = d.getElementById("resultado");
+  let $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
+  let $mensajeAtaqueEnemigo= d.getElementById("ataques-enemigo");
 
-  let $mensajeParrafo = d.createElement("p");
-  $mensajeParrafo.innerHTML = `Tu mokepon ataco con ${ataqueJugador}, el mokepon enemigo ataco con ${ataqueEnemigo} - ${resultadoJuego}`;
+  let $mostarAtaqueJugador = d.createElement('p');
+  let $mostarAtaqueEnemigo = d.createElement('p');
 
-  $seccionMensaje.appendChild($mensajeParrafo);
+  $seccionMensaje.innerHTML = resultadoJuego;
+  $mostarAtaqueJugador.innerHTML = ataqueJugador;
+  $mostarAtaqueEnemigo.innerHTML = ataqueEnemigo;
+
+  $mensajeAtaqueJugador.appendChild($mostarAtaqueJugador);
+  $mensajeAtaqueEnemigo.appendChild($mostarAtaqueEnemigo);
 }
 
 function crearMensajeJuego(resultadoJuegoFinal) {
-  let $seccionMensaje = d.getElementById("mensajes");
+  let $seccionMensaje = d.getElementById("resultado");
 
-  let $mensajeParrafo = d.createElement("p");
-  $mensajeParrafo.innerHTML = resultadoJuegoFinal;
-
-  $seccionMensaje.appendChild($mensajeParrafo);
+  $seccionMensaje.innerHTML = resultadoJuegoFinal;
 
   let $btnFuego = d.getElementById("btn-fuego");
   let $btnAgua = d.getElementById("btn-agua");

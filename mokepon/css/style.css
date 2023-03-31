@@ -97,3 +97,33 @@ input {
 .btn-ataques:hover {
   cursor: pointer;
 }
+
+#mensajes {
+  width: 400px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#btn-reiniciar {
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #dc5f00;
+  color: #f5eaea;
+  border: 2px solid #3c4048;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+}
+
+#btn-reiniciar:hover {
+  cursor: pointer;
+}
