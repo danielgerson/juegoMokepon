@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 body {
   font-family: "Press Start 2P", cursive;
-  background-image: url('/mokepon/assets/fondo-mokepon.png');
-  
+  background-image: url("/mokepon/assets/fondo-mokepon.png");
 }
 
 #mokepones {
@@ -14,7 +14,7 @@ body {
 
 .titulo {
   color: #f5eaea;
-  font-size: 52px;
+  font-size: 44px;
 }
 
 .subtitulo {
@@ -31,7 +31,7 @@ body {
   width: 200px;
   height: 250px;
   color: #f5eaea;
-  background-color: #3C4048;
+  background-color: #3c4048;
   font-size: 16px;
   padding: 10px;
   box-sizing: border-box;
@@ -40,12 +40,50 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.5s ease;
 }
 
 .card-mokepon img {
   width: 100%;
 }
+.card-mokepon:hover {
+  cursor: pointer;
+  background-color: #dc5f00;
+}
 
 input {
   display: none;
+}
+
+#btn-seleccionar {
+  width: 300px;
+  height: 60px;
+  margin-top: 30px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  border: none;
+  border-radius: 20px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
+}
+
+#btn-seleccionar:hover {
+  cursor: pointer;
+}
+
+#ataques {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f5eaea;
+}
+
+#ataques button {
+  color: #f5eaea;
+  background-color: #dc5f00;
+  border: none;
+  border-radius: 10px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
 }

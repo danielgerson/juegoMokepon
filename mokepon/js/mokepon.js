@@ -29,7 +29,7 @@ function iniciarJuego() {
 
 function seleccionarMokeponJugador() {
   let $seccionAtaques = d.getElementById("ataques");
-  $seccionAtaques.style.display = "block";
+  $seccionAtaques.style.display = "flex"; 
 
   let $seccionMokepones = d.getElementById("mokepones");
   $seccionMokepones.style.display = "none";
