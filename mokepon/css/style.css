@@ -47,7 +47,7 @@ body {
 .card-mokepon img {
   width: 100%;
 }
-.card-mokepon:hover {
+input:checked + label, .card-mokepon:hover {
   cursor: pointer;
   background-color: #dc5f00;
 }
@@ -85,8 +85,10 @@ input {
   height: 50px;
   padding: 10px;
   box-sizing: border-box;
+  margin-right: 5px;
   color: #f5eaea;
   background-color: #dc5f00;
+  box-shadow: 7px 5px 5px black;
   border: none;
   border-radius: 20px;
   font-family: 'Righteous', cursive;
@@ -96,6 +98,7 @@ input {
 
 .btn-ataques:hover {
   cursor: pointer;
+  background-color: #3c4048;
 }
 
 #mensajes {
@@ -122,6 +125,7 @@ input {
   box-sizing: border-box;
   background-color: #dc5f00;
   color: #f5eaea;
+  box-shadow: 5px 5px 7px black;
   border: none;
   border-radius: 20px;
   font-family: 'Righteous', cursive;
@@ -142,22 +146,42 @@ input {
   text-align: center;
 }
 
+
 .container-mensaje {
   color: #f5eaea;
   background-color: #3c4048;
   font-family: 'Righteous', cursive;
-  
   border-radius: 20px;
   box-sizing: border-box;
   margin: 5px;
 }
 
+.vidas {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+.mokepon-seleccionado {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #vidas-jugador, #vidas-enemigo{
-  font-size: 28px;
+  font-size: 44px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #mokepon-jugador, #mokepon-enemigo {
   font-size: 20px;
+  margin-top: 0px;
 }
 
 @media (max-width: 660px) {
