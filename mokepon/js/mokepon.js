@@ -1,21 +1,37 @@
 const d = document;
+
+/* Variables del DOM */
+const $seccionAtaques = d.getElementById("ataques");
+const $seccionReiniciar = d.getElementById("reiniciar-juego");
+const $btnSeleccionar = d.getElementById("btn-seleccionar");
+const $btnFuego = d.getElementById("btn-fuego");
+const $btnAgua = d.getElementById("btn-agua");
+const $btnTierra = d.getElementById("btn-tierra");
+const $btnReiniciar = d.getElementById("btn-reiniciar");
+
+const $seccionMokepones = d.getElementById("mokepones");
+const $btnHipodoge = d.getElementById("hipodoge");
+const $btnCapipepo = d.getElementById("capipepo");
+const $btnRatigueya = d.getElementById("ratigueya");
+const $spanMokeponJugador = d.getElementById("mokepon-jugador");
+
+const $spanMokeponEnemigo = d.getElementById("mokepon-enemigo");
+
+const $spanVidasJugador = d.getElementById("vidas-jugador");
+const $spanVidasEnemigo = d.getElementById("vidas-enemigo");
+
+const $seccionMensaje = d.getElementById("resultado");
+const $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
+const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
+
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 function iniciarJuego() {
-  let $seccionAtaques = d.getElementById("ataques");
   $seccionAtaques.style.display = "none";
-
-  let $seccionReiniciar = d.getElementById('reiniciar-juego');
-  $seccionReiniciar.style.display = 'none';
-
-  let $btnSeleccionar = d.getElementById("btn-seleccionar");
-  let $btnFuego = d.getElementById("btn-fuego");
-  let $btnAgua = d.getElementById("btn-agua");
-  let $btnTierra = d.getElementById("btn-tierra");
-  let $btnReiniciar = d.getElementById("btn-reiniciar");
+  $seccionReiniciar.style.display = "none";
 
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
 
@@ -27,16 +43,8 @@ function iniciarJuego() {
 }
 
 function seleccionarMokeponJugador() {
-  let $seccionAtaques = d.getElementById("ataques");
-  $seccionAtaques.style.display = "flex"; 
-
-  let $seccionMokepones = d.getElementById("mokepones");
+  $seccionAtaques.style.display = "flex";
   $seccionMokepones.style.display = "none";
-
-  let $btnHipodoge = d.getElementById("hipodoge");
-  let $btnCapipepo = d.getElementById("capipepo");
-  let $btnRatigueya = d.getElementById("ratigueya");
-  let $spanMokeponJugador = d.getElementById("mokepon-jugador");
 
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = "Hipodoge";
@@ -54,7 +62,6 @@ function seleccionarMokeponJugador() {
 
 function seleccionarMokeponEnemigo() {
   let mokeponAleatorio = aleatorio(1, 3);
-  let $spanMokeponEnemigo = d.getElementById("mokepon-enemigo");
 
   if (mokeponAleatorio == 1) {
     $spanMokeponEnemigo.innerHTML = "Hipodoge";
@@ -94,9 +101,6 @@ function ataqueEnemigoAleatorio() {
 }
 
 function combate() {
-  let $spanVidasJugador = d.getElementById("vidas-jugador");
-  let $spanVidasEnemigo = d.getElementById("vidas-enemigo");
-
   if (ataqueJugador == ataqueEnemigo) {
     crearMensaje("EMPATASTE");
   } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") {
@@ -132,12 +136,8 @@ function reiniciar() {
 }
 
 function crearMensaje(resultadoJuego) {
-  let $seccionMensaje = d.getElementById("resultado");
-  let $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
-  let $mensajeAtaqueEnemigo= d.getElementById("ataques-enemigo");
-
-  let $mostarAtaqueJugador = d.createElement('p');
-  let $mostarAtaqueEnemigo = d.createElement('p');
+  let $mostarAtaqueJugador = d.createElement("p");
+  let $mostarAtaqueEnemigo = d.createElement("p");
 
   $seccionMensaje.innerHTML = resultadoJuego;
   $mostarAtaqueJugador.innerHTML = ataqueJugador;
@@ -148,16 +148,8 @@ function crearMensaje(resultadoJuego) {
 }
 
 function crearMensajeJuego(resultadoJuegoFinal) {
-  let $seccionMensaje = d.getElementById("resultado");
-
   $seccionMensaje.innerHTML = resultadoJuegoFinal;
-
-  let $btnFuego = d.getElementById("btn-fuego");
-  let $btnAgua = d.getElementById("btn-agua");
-  let $btnTierra = d.getElementById("btn-tierra");
-
-  let $seccionReiniciar = d.getElementById('reiniciar-juego');
-  $seccionReiniciar.style.display = 'block';
+  $seccionReiniciar.style.display = "block";
 
   $btnFuego.disabled = true;
   $btnAgua.disabled = true;
