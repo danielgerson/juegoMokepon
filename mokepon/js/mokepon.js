@@ -24,6 +24,7 @@ const $seccionMensaje = d.getElementById("resultado");
 const $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
 const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 
+let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -34,12 +35,38 @@ class Mokepon {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
+    this.ataques = [];
   }
 }
 
 let hipodoge = new Mokepon('Hipodoge', './assets/mokepons_mokepon_hipodoge_attack.webp', 3);
 let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attack.webp', 3);
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 3);
+
+hipodoge.ataques.push(
+  { id: 'btn-agua', nombre: 'Agua' },
+  { id: 'btn-agua', nombre: 'Agua' },
+  { id: 'btn-agua', nombre: 'Agua' },
+  { id: 'btn-fuego', nombre: 'Fuego' },
+  { id: 'btn-tierra', nombre: 'Tierra' }
+);
+
+capipepo.ataques.push(
+  { id: 'btn-tierra', nombre: 'Tierra' },
+  { id: 'btn-tierra', nombre: 'Tierra' },
+  { id: 'btn-tierra', nombre: 'Tierra' },
+  { id: 'btn-agua', nombre: 'Agua' },
+  { id: 'btn-fuego', nombre: 'Fuego' }
+)
+
+ratigueya.ataques.push(
+  { id: 'btn-fuego', nombre: 'Fuego' },
+  { id: 'btn-fuego', nombre: 'Fuego' },
+  { id: 'btn-fuego', nombre: 'Fuego' },
+  { id: 'btn-agua', nombre: 'Agua' },
+  { id: 'btn-tierra', nombre: 'Tierra' },
+)
+
 
 function iniciarJuego() {
   $seccionAtaques.style.display = "none";
