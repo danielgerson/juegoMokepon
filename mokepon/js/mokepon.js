@@ -11,12 +11,10 @@ const $btnReiniciar = d.getElementById("btn-reiniciar");
 const $insertarMokepones = d.getElementById('container-mokepones');
 
 const $seccionMokepones = d.getElementById("mokepones");
-const $btnHipodoge = d.getElementById("hipodoge");
-const $btnCapipepo = d.getElementById("capipepo");
-const $btnRatigueya = d.getElementById("ratigueya");
 const $spanMokeponJugador = d.getElementById("mokepon-jugador");
 
 const $spanMokeponEnemigo = d.getElementById("mokepon-enemigo");
+
 
 const $spanVidasJugador = d.getElementById("vidas-jugador");
 const $spanVidasEnemigo = d.getElementById("vidas-enemigo");
@@ -27,6 +25,9 @@ const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 
 let mokepones = [];
 let opcionMokepones;
+let $btnHipodoge
+let $btnCapipepo
+let $btnRatigueya
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -87,6 +88,10 @@ function iniciarJuego() {
     </label>
     `
     $insertarMokepones.innerHTML += opcionMokepones;
+
+    $btnHipodoge = d.getElementById("Hipodoge");
+    $btnCapipepo = d.getElementById("Capipepo");
+    $btnRatigueya = d.getElementById("Ratigueya");
   })
   
 
