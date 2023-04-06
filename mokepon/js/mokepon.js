@@ -8,6 +8,7 @@ const $btnFuego = d.getElementById("btn-fuego");
 const $btnAgua = d.getElementById("btn-agua");
 const $btnTierra = d.getElementById("btn-tierra");
 const $btnReiniciar = d.getElementById("btn-reiniciar");
+const $insertarMokepones = d.getElementById('container-mokepones');
 
 const $seccionMokepones = d.getElementById("mokepones");
 const $btnHipodoge = d.getElementById("hipodoge");
@@ -25,6 +26,7 @@ const $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
 const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 
 let mokepones = [];
+let opcionMokepones;
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -67,10 +69,26 @@ ratigueya.ataques.push(
   { id: 'btn-tierra', nombre: 'Tierra' },
 )
 
+mokepones.push(hipodoge, capipepo, ratigueya);
 
 function iniciarJuego() {
   $seccionAtaques.style.display = "none";
   $seccionReiniciar.style.display = "none";
+
+  mokepones.forEach(mokepon => {
+    opcionMokepones = `
+    <input type="radio" name="mokepon" id=${mokepon.nombre} />
+    <label class="card-mokepon" for=${mokepon.nombre}>
+      <p>${mokepon.nombre}</p>
+      <img
+        src=${mokepon.foto}
+        alt=${mokepon.nombre}
+      />
+    </label>
+    `
+    $insertarMokepones.innerHTML += opcionMokepones;
+  })
+  
 
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
 
@@ -86,7 +104,8 @@ function seleccionarMokeponJugador() {
   $seccionMokepones.style.display = "none";
 
   if ($btnHipodoge.checked) {
-    $spanMokeponJugador.innerHTML = "Hipodoge";
+  $spanMokeponJugador.innerHTML = "Hipodoge";
+
   } else if ($btnCapipepo.checked) {
     $spanMokeponJugador.innerHTML = "Capipepo";
   } else if ($btnRatigueya.checked) {
@@ -181,6 +200,7 @@ function crearMensaje(resultadoJuego) {
   $seccionMensaje.innerHTML = resultadoJuego;
   $mostarAtaqueJugador.innerHTML = ataqueJugador;
   $mostarAtaqueEnemigo.innerHTML = ataqueEnemigo;
+
 
   $mensajeAtaqueJugador.appendChild($mostarAtaqueJugador);
   $mensajeAtaqueEnemigo.appendChild($mostarAtaqueEnemigo);
