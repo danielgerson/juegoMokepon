@@ -109,12 +109,11 @@ function seleccionarMokeponJugador() {
   $seccionMokepones.style.display = "none";
 
   if ($btnHipodoge.checked) {
-  $spanMokeponJugador.innerHTML = "Hipodoge";
-
+  $spanMokeponJugador.innerHTML = $btnHipodoge.id;
   } else if ($btnCapipepo.checked) {
-    $spanMokeponJugador.innerHTML = "Capipepo";
+    $spanMokeponJugador.innerHTML = $btnCapipepo.id;
   } else if ($btnRatigueya.checked) {
-    $spanMokeponJugador.innerHTML = "Ratigueya";
+    $spanMokeponJugador.innerHTML = $btnRatigueya.id;
   } else {
     alert("Selecciona un Mokepon");
     $seccionAtaques.style.display = "none";
