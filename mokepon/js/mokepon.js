@@ -4,17 +4,15 @@ const d = document;
 const $seccionAtaques = d.getElementById("ataques");
 const $seccionReiniciar = d.getElementById("reiniciar-juego");
 const $btnSeleccionar = d.getElementById("btn-seleccionar");
-const $btnFuego = d.getElementById("btn-fuego");
-const $btnAgua = d.getElementById("btn-agua");
-const $btnTierra = d.getElementById("btn-tierra");
+
 const $btnReiniciar = d.getElementById("btn-reiniciar");
 const $insertarMokepones = d.getElementById('container-mokepones');
+const $containerAtaques = d.getElementById('container-ataques');
 
 const $seccionMokepones = d.getElementById("mokepones");
 const $spanMokeponJugador = d.getElementById("mokepon-jugador");
 
 const $spanMokeponEnemigo = d.getElementById("mokepon-enemigo");
-
 
 const $spanVidasJugador = d.getElementById("vidas-jugador");
 const $spanVidasEnemigo = d.getElementById("vidas-enemigo");
@@ -25,9 +23,13 @@ const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 
 let mokepones = [];
 let opcionMokepones;
+let opcionAtaques;
 let $btnHipodoge
 let $btnCapipepo
 let $btnRatigueya
+let $btnFuego
+let $btnAgua
+let $btnTierra
 let mokeponJugador
 let ataqueJugador;
 let ataqueEnemigo;
@@ -48,27 +50,27 @@ let capipepo = new Mokepon('Capipepo', './assets/mokepons_mokepon_capipepo_attac
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepons_mokepon_ratigueya_attack.webp', 3);
 
 hipodoge.ataques.push(
-  { id: 'btn-agua', nombre: 'Agua' },
-  { id: 'btn-agua', nombre: 'Agua' },
-  { id: 'btn-agua', nombre: 'Agua' },
-  { id: 'btn-fuego', nombre: 'Fuego' },
-  { id: 'btn-tierra', nombre: 'Tierra' }
+  { id: 'btn-agua', nombre: 'Agua 💧' },
+  { id: 'btn-agua', nombre: 'Agua 💧' },
+  { id: 'btn-agua', nombre: 'Agua 💧' },
+  { id: 'btn-fuego', nombre: 'Fuego 🔥' },
+  { id: 'btn-tierra', nombre: 'Tierra 🌿' }
 );
 
 capipepo.ataques.push(
-  { id: 'btn-tierra', nombre: 'Tierra' },
-  { id: 'btn-tierra', nombre: 'Tierra' },
-  { id: 'btn-tierra', nombre: 'Tierra' },
-  { id: 'btn-agua', nombre: 'Agua' },
-  { id: 'btn-fuego', nombre: 'Fuego' }
+  { id: 'btn-tierra', nombre: 'Tierra 🌿' },
+  { id: 'btn-tierra', nombre: 'Tierra 🌿' },
+  { id: 'btn-tierra', nombre: 'Tierra 🌿' },
+  { id: 'btn-agua', nombre: 'Agua 💧' },
+  { id: 'btn-fuego', nombre: 'Fuego 🔥' }
 )
 
 ratigueya.ataques.push(
-  { id: 'btn-fuego', nombre: 'Fuego' },
-  { id: 'btn-fuego', nombre: 'Fuego' },
-  { id: 'btn-fuego', nombre: 'Fuego' },
-  { id: 'btn-agua', nombre: 'Agua' },
-  { id: 'btn-tierra', nombre: 'Tierra' },
+  { id: 'btn-fuego', nombre: 'Fuego🔥' },
+  { id: 'btn-fuego', nombre: 'Fuego 🔥' },
+  { id: 'btn-fuego', nombre: 'Fuego 🔥' },
+  { id: 'btn-agua', nombre: 'Agua 💧' },
+  { id: 'btn-tierra', nombre: 'Tierra 🌿' },
 )
 
 mokepones.push(hipodoge, capipepo, ratigueya);
@@ -95,12 +97,7 @@ function iniciarJuego() {
     $btnRatigueya = d.getElementById("Ratigueya");
   })
   
-
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
-
-  $btnFuego.addEventListener("click", ataqueFuego);
-  $btnAgua.addEventListener("click", ataqueAgua);
-  $btnTierra.addEventListener("click", ataqueTierra);
 
   $btnReiniciar.addEventListener("click", reiniciar);
 }
@@ -128,15 +125,34 @@ function seleccionarMokeponJugador() {
 }
 
 function extraerAtaque(mokeponJugador) {
-  let ataque
+  let ataques
 
   mokepones.forEach(mokepon => {
     if (mokeponJugador === mokepon.nombre) {
-      ataque = mokepon.ataques;
+      ataques = mokepon.ataques;
     }
   })
 
-  mostrarAtaques(ataque);
+  mostrarAtaques(ataques);
+}
+
+function mostrarAtaques (ataques) {
+  ataques.forEach(ataque => {
+    opcionAtaques = `
+    <button id=${ataque.id} class="btn-ataques">${ataque.nombre}</button>
+    `
+
+    $containerAtaques.innerHTML += opcionAtaques;
+
+    $btnFuego = d.getElementById("btn-fuego");
+    $btnAgua = d.getElementById("btn-agua");
+    $btnTierra = d.getElementById("btn-tierra");
+  })
+  
+  $btnFuego.addEventListener("click", ataqueFuego);
+  $btnAgua.addEventListener("click", ataqueAgua);
+  $btnTierra.addEventListener("click", ataqueTierra);
+  
 }
 
 function seleccionarMokeponEnemigo() {
