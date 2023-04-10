@@ -123,15 +123,9 @@ function seleccionarMokeponJugador() {
 }
 
 function seleccionarMokeponEnemigo() {
-  let mokeponAleatorio = aleatorio(1, 3);
+  let mokeponAleatorio = aleatorio(0, mokepones.length - 1);
 
-  if (mokeponAleatorio == 1) {
-    $spanMokeponEnemigo.innerHTML = "Hipodoge";
-  } else if (mokeponAleatorio == 2) {
-    $spanMokeponEnemigo.innerHTML = "Capipepo";
-  } else {
-    $spanMokeponEnemigo.innerHTML = "Ratigueya";
-  }
+  $spanMokeponEnemigo.innerHTML = mokepones[mokeponAleatorio].nombre;
 }
 
 function ataqueFuego() {
