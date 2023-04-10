@@ -28,6 +28,7 @@ let opcionMokepones;
 let $btnHipodoge
 let $btnCapipepo
 let $btnRatigueya
+let mokeponJugador
 let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 3;
@@ -110,16 +111,32 @@ function seleccionarMokeponJugador() {
 
   if ($btnHipodoge.checked) {
   $spanMokeponJugador.innerHTML = $btnHipodoge.id;
+  mokeponJugador = $btnHipodoge.id;
   } else if ($btnCapipepo.checked) {
     $spanMokeponJugador.innerHTML = $btnCapipepo.id;
+    mokeponJugador = $btnCapipepo.id;
   } else if ($btnRatigueya.checked) {
     $spanMokeponJugador.innerHTML = $btnRatigueya.id;
+    mokeponJugador = $btnRatigueya.id;
   } else {
     alert("Selecciona un Mokepon");
     $seccionAtaques.style.display = "none";
   }
 
+  extraerAtaque(mokeponJugador);
   seleccionarMokeponEnemigo();
+}
+
+function extraerAtaque(mokeponJugador) {
+  let ataque
+
+  mokepones.forEach(mokepon => {
+    if (mokeponJugador === mokepon.nombre) {
+      ataque = mokepon.ataques;
+    }
+  })
+
+  mostrarAtaques(ataque);
 }
 
 function seleccionarMokeponEnemigo() {
