@@ -32,8 +32,9 @@ let $btnFuego
 let $btnAgua
 let $btnTierra
 let mokeponJugador
+let ataqueMokeponEnemigo;
 let ataqueJugador = [];
-let ataqueEnemigo;
+let ataqueEnemigo = [];
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -159,38 +160,39 @@ function secuenciaAtaques () {
       if (e.target.textContent === "Fuego 🔥" ) {
         ataqueJugador.push('FUEGO');
         boton.style.background = '#3c4048'
-        console.log(ataqueJugador);
       } else if (e.target.textContent === 'Agua 💧') {
         boton.style.background = '#3c4048'
         ataqueJugador.push('AGUA');
-        console.log(ataqueJugador);
       } else if (e.target.textContent === 'Tierra 🌿') {
         ataqueJugador.push('TIERRA')
         boton.style.background = '#3c4048'
-        console.log(ataqueJugador);
       }
+      ataqueEnemigoAleatorio()
     })
   })
+
 }
 
 function seleccionarMokeponEnemigo() {
   let mokeponAleatorio = aleatorio(0, mokepones.length - 1);
 
   $spanMokeponEnemigo.innerHTML = mokepones[mokeponAleatorio].nombre;
+  ataqueMokeponEnemigo = mokepones[mokeponAleatorio].ataques;
 
   secuenciaAtaques();
 }
 
 function ataqueEnemigoAleatorio() {
-  let numeroAtaqueEnemigo = aleatorio(1, 3);
-  if (numeroAtaqueEnemigo == 1) {
-    ataqueEnemigo = "FUEGO";
-  } else if (numeroAtaqueEnemigo == 2) {
-    ataqueEnemigo = "AGUA";
+  let numeroAtaqueEnemigo = aleatorio(0, ataqueMokeponEnemigo - 1);
+  if (numeroAtaqueEnemigo == 0 || numeroAtaqueEnemigo == 1) {
+    ataqueEnemigo.push("FUEGO");
+  } else if (numeroAtaqueEnemigo == 3 || numeroAtaqueEnemigo == 4) {
+    ataqueEnemigo.push("AGUA");
   } else {
-    ataqueEnemigo = "TIERRA";
+    ataqueEnemigo.push("TIERRA");
   }
 
+  console.log(ataqueEnemigo);
   combate();
 }
 
