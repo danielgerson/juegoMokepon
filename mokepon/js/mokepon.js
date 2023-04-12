@@ -37,6 +37,8 @@ let ataqueJugador = [];
 let ataqueEnemigo = [];
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let indexJugador;
+let indexEnemigo;
 
 class Mokepon {
   constructor(nombre, foto, vida) {
@@ -68,7 +70,7 @@ capipepo.ataques.push(
 )
 
 ratigueya.ataques.push(
-  { id: 'btn-fuego', nombre: 'Fuego🔥' },
+  { id: 'btn-fuego', nombre: 'Fuego 🔥' },
   { id: 'btn-fuego', nombre: 'Fuego 🔥' },
   { id: 'btn-fuego', nombre: 'Fuego 🔥' },
   { id: 'btn-agua', nombre: 'Agua 💧' },
@@ -183,7 +185,7 @@ function seleccionarMokeponEnemigo() {
 }
 
 function ataqueEnemigoAleatorio() {
-  let numeroAtaqueEnemigo = aleatorio(0, ataqueMokeponEnemigo - 1);
+  let numeroAtaqueEnemigo = aleatorio(0, ataqueMokeponEnemigo.length - 1);
   if (numeroAtaqueEnemigo == 0 || numeroAtaqueEnemigo == 1) {
     ataqueEnemigo.push("FUEGO");
   } else if (numeroAtaqueEnemigo == 3 || numeroAtaqueEnemigo == 4) {
@@ -193,11 +195,40 @@ function ataqueEnemigoAleatorio() {
   }
 
   console.log(ataqueEnemigo);
-  combate();
+  iniciarPelea();
+}
+
+function iniciarPelea() {
+  if (ataqueJugador.length === 5 ) {
+    combate();
+  }
+}
+
+function indexAtaques(jugador, enemigo) {
+  indexJugador = ataqueJugador[jugador];
+  indexEnemigo = ataqueEnemigo[enemigo];
 }
 
 function combate() {
-  if (ataqueJugador == ataqueEnemigo) {
+ for (let index = 0; index < ataqueJugador.length; index++) {
+  if (ataqueJugador[index] == ataqueEnemigo[index]) {
+    indexAtaques(index, index);
+    crearMensaje("EMPATASTE");
+  } else if (ataqueJugador[index] == 'FUEGO' && ataqueEnemigo[index] == "TIERRA" ) {
+    indexAtaques(index,index);
+    crearMensaje("GANASTE");
+  } else if (ataqueJugador[index] == "AGUA" && ataqueEnemigo[index] == "FUEGO") {
+    indexAtaques(index,index);
+    crearMensaje("GANASTE");
+  } else if (ataqueJugador[index] == "TIERRA" && ataqueEnemigo[index] == "AGUA") {
+    indexAtaques(index,index);
+    crearMensaje("GANASTE");
+  } else {
+    crearMensaje("PERDISTE");
+  }
+ }
+
+  /* if (ataqueJugador == ataqueEnemigo) {
     crearMensaje("EMPATASTE");
   } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") {
     crearMensaje("GANASTE");
@@ -215,7 +246,7 @@ function combate() {
     crearMensaje("PERDISTE");
     vidasJugador--;
     $spanVidasJugador.innerHTML = vidasJugador;
-  }
+  } */
   contadorVidas();
 }
 
@@ -236,8 +267,8 @@ function crearMensaje(resultadoJuego) {
   let $mostarAtaqueEnemigo = d.createElement("p");
 
   $seccionMensaje.innerHTML = resultadoJuego;
-  $mostarAtaqueJugador.innerHTML = ataqueJugador;
-  $mostarAtaqueEnemigo.innerHTML = ataqueEnemigo;
+  $mostarAtaqueJugador.innerHTML = indexJugador;
+  $mostarAtaqueEnemigo.innerHTML = indexEnemigo;
 
 
   $mensajeAtaqueJugador.appendChild($mostarAtaqueJugador);
