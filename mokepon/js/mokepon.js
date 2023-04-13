@@ -191,6 +191,7 @@ function seleccionarMokeponEnemigo() {
 
 function ataqueEnemigoAleatorio() {
   let numeroAtaqueEnemigo = aleatorio(0, ataqueMokeponEnemigo.length - 1);
+  
   if (numeroAtaqueEnemigo == 0 || numeroAtaqueEnemigo == 1) {
     ataqueEnemigo.push("FUEGO");
   } else if (numeroAtaqueEnemigo == 3 || numeroAtaqueEnemigo == 4) {
@@ -241,8 +242,7 @@ function combate() {
     $spanVidasEnemigo.innerHTML = victoriasEnemigo;
   }
  }
-
-  contadorVidas();
+ contadorVidas();
 }
 
 function contadorVidas() {
@@ -266,7 +266,6 @@ function crearMensaje(resultadoJuego) {
   $seccionMensaje.innerHTML = resultadoJuego;
   $mostarAtaqueJugador.innerHTML = indexJugador;
   $mostarAtaqueEnemigo.innerHTML = indexEnemigo;
-
 
   $mensajeAtaqueJugador.appendChild($mostarAtaqueJugador);
   $mensajeAtaqueEnemigo.appendChild($mostarAtaqueEnemigo);
