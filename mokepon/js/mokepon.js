@@ -35,6 +35,8 @@ let mokeponJugador
 let ataqueMokeponEnemigo;
 let ataqueJugador = [];
 let ataqueEnemigo = [];
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let indexJugador;
@@ -162,12 +164,15 @@ function secuenciaAtaques () {
       if (e.target.textContent === "Fuego 🔥" ) {
         ataqueJugador.push('FUEGO');
         boton.style.background = '#3c4048'
+        boton.disabled = true
       } else if (e.target.textContent === 'Agua 💧') {
-        boton.style.background = '#3c4048'
         ataqueJugador.push('AGUA');
+        boton.style.background = '#3c4048'
+        boton.disabled = true
       } else if (e.target.textContent === 'Tierra 🌿') {
         ataqueJugador.push('TIERRA')
         boton.style.background = '#3c4048'
+        boton.disabled = true
       }
       ataqueEnemigoAleatorio()
     })
@@ -217,44 +222,36 @@ function combate() {
   } else if (ataqueJugador[index] == 'FUEGO' && ataqueEnemigo[index] == "TIERRA" ) {
     indexAtaques(index,index);
     crearMensaje("GANASTE");
+    victoriasJugador++
+    $spanVidasJugador.innerHTML = victoriasJugador;
   } else if (ataqueJugador[index] == "AGUA" && ataqueEnemigo[index] == "FUEGO") {
     indexAtaques(index,index);
     crearMensaje("GANASTE");
+    victoriasJugador++
+    $spanVidasJugador.innerHTML = victoriasJugador;
   } else if (ataqueJugador[index] == "TIERRA" && ataqueEnemigo[index] == "AGUA") {
     indexAtaques(index,index);
     crearMensaje("GANASTE");
+    victoriasJugador++
+    $spanVidasJugador.innerHTML = victoriasJugador;
   } else {
+    indexAtaques(index, index);
     crearMensaje("PERDISTE");
+    victoriasEnemigo++
+    $spanVidasEnemigo.innerHTML = victoriasEnemigo;
   }
  }
 
-  /* if (ataqueJugador == ataqueEnemigo) {
-    crearMensaje("EMPATASTE");
-  } else if (ataqueJugador == "FUEGO" && ataqueEnemigo == "TIERRA") {
-    crearMensaje("GANASTE");
-    vidasEnemigo--;
-    $spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") {
-    crearMensaje("GANASTE");
-    vidasEnemigo--;
-    $spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else if (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA") {
-    crearMensaje("GANASTE");
-    vidasEnemigo--;
-    $spanVidasEnemigo.innerHTML = vidasEnemigo;
-  } else {
-    crearMensaje("PERDISTE");
-    vidasJugador--;
-    $spanVidasJugador.innerHTML = vidasJugador;
-  } */
   contadorVidas();
 }
 
 function contadorVidas() {
-  if (vidasEnemigo == 0) {
-    crearMensajeJuego("GANASTE!. La PC no tiene vidas.");
-  } else if (vidasJugador == 0) {
-    crearMensajeJuego("PERDISTE!. Ya no tienes vidas para seguir jugando");
+  if (victoriasJugador === victoriasEnemigo) {
+    crearMensajeJuego("EMPATASTE!!!");
+  } else if (victoriasJugador > victoriasEnemigo) {
+    crearMensajeJuego("FELICIDADES, GANASTE!!! 🤠.");
+  } else {
+    crearMensajeJuego("LO SIENTO, PERDISTE!!! 😞. SUERTE A LA PROXIMA.");
   }
 }
 
@@ -278,10 +275,6 @@ function crearMensaje(resultadoJuego) {
 function crearMensajeJuego(resultadoJuegoFinal) {
   $seccionMensaje.innerHTML = resultadoJuegoFinal;
   $seccionReiniciar.style.display = "block";
-
-  $btnFuego.disabled = true;
-  $btnAgua.disabled = true;
-  $btnTierra.disabled = true;
 }
 
 function aleatorio(min, max) {
