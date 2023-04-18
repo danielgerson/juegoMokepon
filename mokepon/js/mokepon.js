@@ -21,6 +21,9 @@ const $seccionMensaje = d.getElementById("resultado");
 const $mensajeAtaqueJugador = d.getElementById("ataques-jugador");
 const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 
+const $seccionCanvas = d.getElementById("mapa-canvas")
+const $canvas = d.getElementById("mapa");
+
 /* Botones y variables mokepones */
 let $btnHipodoge;
 let $btnCapipepo;
@@ -49,6 +52,9 @@ let mokepones = [];
 let opcionMokepones;
 let opcionAtaques;
 let botones = [];
+
+/* Variables Canvas */
+let lienzo = $canvas.getContext("2d");
 
 class Mokepon {
   constructor(nombre, foto, vida) {
@@ -119,6 +125,7 @@ mokepones.push(hipodoge, capipepo, ratigueya, tucapalma, pydos, langostelvis);
 function iniciarJuego() {
   $seccionAtaques.style.display = "none";
   $seccionReiniciar.style.display = "none";
+  $seccionCanvas.style.display = "none";
 
   mokepones.forEach((mokepon) => {
     opcionMokepones = `
@@ -147,8 +154,19 @@ function iniciarJuego() {
 }
 
 function seleccionarMokeponJugador() {
-  $seccionAtaques.style.display = "flex";
+  // $seccionAtaques.style.display = "flex";
   $seccionMokepones.style.display = "none";
+  $seccionCanvas.style.display = "flex";
+
+  let imgCapipepo = new Image();
+  imgCapipepo.src = capipepo.foto;
+  lienzo.drawImage(
+    imgCapipepo,
+    20,
+    40,
+    100,
+    100
+    )
 
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = $btnHipodoge.id;

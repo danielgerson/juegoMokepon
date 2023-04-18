@@ -187,6 +187,16 @@ input {
   margin-top: 0px;
 }
 
+#mapa-canvas {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#mapa {
+  border: 2px solid white;
+}
+
 @media (max-width: 660px) {
   .titulo {
     font-size: 32px;
