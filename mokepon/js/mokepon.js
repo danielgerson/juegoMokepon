@@ -62,6 +62,14 @@ class Mokepon {
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
+    this.x = 20;
+    this.y = 30;
+    this.w = 80;
+    this.h = 80;
+    this.mapaFoto = new Image();
+    this.mapaFoto.src = foto;
+    this.velocidadX = 0;
+    this.velocidadY = 0;
   }
 }
 
@@ -157,16 +165,6 @@ function seleccionarMokeponJugador() {
   // $seccionAtaques.style.display = "flex";
   $seccionMokepones.style.display = "none";
   $seccionCanvas.style.display = "flex";
-
-  let imgCapipepo = new Image();
-  imgCapipepo.src = capipepo.foto;
-  lienzo.drawImage(
-    imgCapipepo,
-    20,
-    40,
-    100,
-    100
-    )
 
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = $btnHipodoge.id;
@@ -341,6 +339,41 @@ function crearMensajeJuego(resultadoJuegoFinal) {
 
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function mostrarMokepon() {
+  lienzo.clearRect(0,0, $canvas.width, $canvas.height);
+  lienzo.drawImage(
+    capipepo.mapaFoto,
+    capipepo.x,
+    capipepo.y,
+    capipepo.w,
+    capipepo.h
+    )
+}
+
+function moverCapipepoDerecha() {
+  capipepo.x = capipepo.x + 5;
+  mostrarMokepon()
+}
+
+function moverCapipepoAbajo() {
+  capipepo.y = capipepo.y + 5;
+  mostrarMokepon();
+}
+
+function moverCapipepoIzquierda() {
+  capipepo.x = capipepo.x - 5;
+  mostrarMokepon();
+}
+
+function moverCapipepoArriba() {
+  capipepo.y = capipepo.y - 5;
+  mostrarMokepon();
+}
+
+function detenerMovimiento() {
+
 }
 
 window.addEventListener("load", iniciarJuego);
