@@ -163,11 +163,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMokeponJugador() {
-  // $seccionAtaques.style.display = "flex";
+  // $seccionAtaques.style.display = "flex";  
   $seccionMokepones.style.display = "none";
+  
   $seccionCanvas.style.display = "flex";
 
-  intervalo = setInterval(mostrarMokepon, 50);
+  inciarMapa();
 
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = $btnHipodoge.id;
@@ -377,6 +378,30 @@ function moverCapipepoArriba() {
 function detenerMovimiento() {
   capipepo.velocidadX = 0;
   capipepo.velocidadY = 0;
+}
+
+function movimientoTeclado(event) {
+  switch(event.key) {
+    case 'ArrowUp':
+      moverCapipepoArriba();
+      break
+    case 'ArrowRight':
+      moverCapipepoDerecha();
+      break
+    case 'ArrowDown':
+      moverCapipepoAbajo();
+      break
+    case 'ArrowLeft':
+      moverCapipepoIzquierda();
+      break
+  }
+}
+
+function inciarMapa() {
+  intervalo = setInterval(mostrarMokepon, 50);
+
+  window.addEventListener('keydown', movimientoTeclado);
+  window.addEventListener('keyup', detenerMovimiento);
 }
 
 window.addEventListener("load", iniciarJuego);
