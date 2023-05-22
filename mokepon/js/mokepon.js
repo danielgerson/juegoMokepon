@@ -24,6 +24,7 @@ const $mensajeAtaqueEnemigo = d.getElementById("ataques-enemigo");
 const $seccionCanvas = d.getElementById("mapa-canvas")
 const $canvas = d.getElementById("mapa");
 
+
 /* Botones y variables mokepones */
 let $btnHipodoge;
 let $btnCapipepo;
@@ -37,6 +38,7 @@ let $btnTierra;
 
 /* Variables Jugador */
 let mokeponJugador;
+let mokeponJugadorObjeto;
 let ataqueJugador = [];
 let victoriasJugador = 0;
 let indexJugador;
@@ -56,6 +58,8 @@ let botones = [];
 /* Variables Canvas */
 let lienzo = $canvas.getContext("2d");
 let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = './assets/mokemap.png';
 
 class Mokepon {
   constructor(nombre, foto, vida) {
@@ -165,10 +169,6 @@ function iniciarJuego() {
 function seleccionarMokeponJugador() {
   // $seccionAtaques.style.display = "flex";  
   $seccionMokepones.style.display = "none";
-  
-  $seccionCanvas.style.display = "flex";
-
-  inciarMapa();
 
   if ($btnHipodoge.checked) {
     $spanMokeponJugador.innerHTML = $btnHipodoge.id;
@@ -194,6 +194,8 @@ function seleccionarMokeponJugador() {
   }
 
   extraerAtaque(mokeponJugador);
+  $seccionCanvas.style.display = "flex";
+  inciarMapa();
   seleccionarMokeponEnemigo();
 }
 
@@ -345,63 +347,84 @@ function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function mostrarMokepon() {
-  capipepo.x = capipepo.x + capipepo.velocidadX;
-  capipepo.y = capipepo.y + capipepo.velocidadY;
+function pintarCanvas() {
+  mokeponJugadorObjeto.x = mokeponJugadorObjeto.x + mokeponJugadorObjeto.velocidadX;
+  mokeponJugadorObjeto.y = mokeponJugadorObjeto.y + mokeponJugadorObjeto.velocidadY;
   lienzo.clearRect(0,0, $canvas.width, $canvas.height);
   lienzo.drawImage(
-    capipepo.mapaFoto,
-    capipepo.x,
-    capipepo.y,
-    capipepo.w,
-    capipepo.h
+    mapaBackground,
+    0,
+    0,
+    $canvas.width,
+    $canvas.height
+  )
+
+  lienzo.drawImage(
+    mokeponJugadorObjeto.mapaFoto,
+    mokeponJugadorObjeto.x,
+    mokeponJugadorObjeto.y,
+    mokeponJugadorObjeto.w,
+    mokeponJugadorObjeto.h
     )
 }
 
-function moverCapipepoDerecha() {
-  capipepo.velocidadX = 5;
+function moverDerecha() {
+  mokeponJugadorObjeto.velocidadX = 5;
 }
 
-function moverCapipepoAbajo() {
-  capipepo.velocidadY = 5;
-  mostrarMokepon();
+function moverAbajo() {
+  mokeponJugadorObjeto.velocidadY = 5;
+  pintarCanvas();
 }
 
-function moverCapipepoIzquierda() {
-  capipepo.velocidadX = -5;
+function moverIzquierda() {
+  mokeponJugadorObjeto.velocidadX = -5;
 }
 
-function moverCapipepoArriba() {
-  capipepo.velocidadY = -5;
+function moverArriba() {
+  mokeponJugadorObjeto.velocidadY = -5;
 }
 
 function detenerMovimiento() {
-  capipepo.velocidadX = 0;
-  capipepo.velocidadY = 0;
+  mokeponJugadorObjeto.velocidadY = 0;
+  mokeponJugadorObjeto.velocidadX = 0;
 }
 
 function movimientoTeclado(event) {
   switch(event.key) {
     case 'ArrowUp':
-      moverCapipepoArriba();
+      moverArriba();
       break
     case 'ArrowRight':
-      moverCapipepoDerecha();
+      moverDerecha();
       break
     case 'ArrowDown':
-      moverCapipepoAbajo();
+      moverAbajo();
       break
     case 'ArrowLeft':
-      moverCapipepoIzquierda();
+      moverIzquierda();
       break
   }
 }
 
 function inciarMapa() {
-  intervalo = setInterval(mostrarMokepon, 50);
+  $canvas.width = 600;
+  $canvas.height = 400;
+  mokeponJugadorObjeto = extrarObjetoMokepon(mokeponJugador);
+  console.log(mokeponJugadorObjeto, mokeponJugador);
+
+  intervalo = setInterval(pintarCanvas, 50);
 
   window.addEventListener('keydown', movimientoTeclado);
   window.addEventListener('keyup', detenerMovimiento);
+}
+
+function extrarObjetoMokepon() {
+  for (let i = 0; i < mokepones.length; i++) {
+    if (mokeponJugador === mokepones[i].nombre) {
+      return mokepones[i];
+    }
+  }
 }
 
 window.addEventListener("load", iniciarJuego);
