@@ -62,28 +62,45 @@ let mapaBackground = new Image();
 mapaBackground.src = './assets/mokemap.png';
 
 class Mokepon {
-  constructor(nombre, foto, vida) {
+  constructor(nombre, foto, vida,fotoMapa, x = 10, y = 10 ) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
-    this.x = 20;
-    this.y = 30;
-    this.w = 80;
-    this.h = 80;
+    this.x = x;
+    this.y = y;
+    this.w = 50;
+    this.h = 50;
     this.mapaFoto = new Image();
-    this.mapaFoto.src = foto;
+    this.mapaFoto.src = fotoMapa;
     this.velocidadX = 0;
     this.velocidadY = 0;
   }
+
+  pintarMokepones() {
+    lienzo.drawImage(
+      this.mapaFoto,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+      )
+  }
 }
 
-let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3);
-let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3);
-let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3);
-let tucapalma = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3);
-let pydos = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3);
-let langostelvis = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3);
+let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png");
+let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png");
+let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png");
+let tucapalma = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png");
+let pydos = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png");
+let langostelvis = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png");
+
+// Mokepones enemigos
+let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png", 80, 120);
+let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png", 150, 95);
+let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png", 200, 190);let tucapalmaEnemigo = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png", 50, 225);
+let pydosEnemigo = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png", 175, 30);
+let langostelvisEnemigo = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png", 275, 60);
 
 hipodoge.ataques.push(
   { id: "btn-agua", nombre: "Agua 💧" },
@@ -359,13 +376,14 @@ function pintarCanvas() {
     $canvas.height
   )
 
-  lienzo.drawImage(
-    mokeponJugadorObjeto.mapaFoto,
-    mokeponJugadorObjeto.x,
-    mokeponJugadorObjeto.y,
-    mokeponJugadorObjeto.w,
-    mokeponJugadorObjeto.h
-    )
+  mokeponJugadorObjeto.pintarMokepones();
+
+  hipodogeEnemigo.pintarMokepones();
+  capipepoEnemigo.pintarMokepones();
+  ratigueyaEnemigo.pintarMokepones();
+  tucapalmaEnemigo.pintarMokepones();
+  pydosEnemigo.pintarMokepones();
+  langostelvisEnemigo.pintarMokepones();
 }
 
 function moverDerecha() {
