@@ -54,6 +54,17 @@ let mokepones = [];
 let opcionMokepones;
 let opcionAtaques;
 let botones = [];
+let alturaPantalla;
+let anchoPanatalla = window.innerWidth - 20;
+const anchoMaximoPantalla = 550;
+
+if (anchoPanatalla > anchoMaximoPantalla) {
+  anchoPanatalla = anchoMaximoPantalla - 20;
+}
+
+alturaPantalla = (anchoPanatalla * 600 ) / 800;
+$canvas.width = anchoPanatalla
+$canvas.height = alturaPantalla
 
 /* Variables Canvas */
 let lienzo = $canvas.getContext("2d");
@@ -62,15 +73,15 @@ let mapaBackground = new Image();
 mapaBackground.src = './assets/mokemap.png';
 
 class Mokepon {
-  constructor(nombre, foto, vida,fotoMapa, x = 10, y = 10 ) {
+  constructor(nombre, foto, vida,fotoMapa) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
-    this.x = x;
-    this.y = y;
     this.w = 50;
     this.h = 50;
+    this.x = aleatorio(0, $canvas.width - this.w);
+    this.y = aleatorio(0, $canvas.height - this.h);
     this.mapaFoto = new Image();
     this.mapaFoto.src = fotoMapa;
     this.velocidadX = 0;
@@ -88,6 +99,7 @@ class Mokepon {
   }
 }
 
+// Mokepones Jugador
 let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png");
 let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png");
 let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png");
@@ -96,11 +108,12 @@ let pydos = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3
 let langostelvis = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png");
 
 // Mokepones enemigos
-let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png", 80, 120);
-let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png", 150, 95);
-let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png", 200, 190);let tucapalmaEnemigo = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png", 50, 225);
-let pydosEnemigo = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png", 175, 30);
-let langostelvisEnemigo = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png", 275, 60);
+let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png");
+let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png");
+let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png");
+let tucapalmaEnemigo = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png");
+let pydosEnemigo = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png");
+let langostelvisEnemigo = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png");
 
 hipodoge.ataques.push(
   { id: "btn-agua", nombre: "Agua 💧" },
@@ -481,8 +494,7 @@ function movimientoTeclado(event) {
 }
 
 function inciarMapa() {
-  $canvas.width = 600;
-  $canvas.height = 400;
+  
   mokeponJugadorObjeto = extrarObjetoMokepon(mokeponJugador);
 
   intervalo = setInterval(pintarCanvas, 50);
