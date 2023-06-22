@@ -20,13 +20,15 @@
     </section>
 
     <section id="mapa-canvas">
-      <h1 class="titulo">Mokepon! 🔥💧🌿</h1>
+      <h2 class="subtitulo">Mokepon! 🔥💧🌿</h2>
 
       <canvas id="mapa"></canvas>
-      <button onmouseup="detenerMovimiento()" onmousedown="moverCapipepoDerecha()">Mover Derecha</button>
-      <button onmouseup="detenerMovimiento()" onmousedown="moverCapipepoAbajo()">Mover Abajo</button>
-      <button onmouseup="detenerMovimiento()" onmousedown="moverCapipepoIzquierda()">Mover Izquierda</button>
-      <button onmouseup="detenerMovimiento()" onmousedown="moverCapipepoArriba()">Mover Arriba</button>
+      <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+      <div>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+      </div>
     </section>
 
     <section id="ataques">

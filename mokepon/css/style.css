@@ -193,13 +193,35 @@ input {
   justify-content: center;
 }
 
+#mapa-canvas button {
+  width: 120px;
+  height: 50px;
+  margin-top: 5px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+  font-size: 18px;
+}
+
 @media (max-width: 660px) {
   .titulo {
     font-size: 32px;
   }
 
   .cards {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 150px 150px;
+  }
+  
+  .card-mokepon {
+    width: 150px;
+    height: 180px;
+  }
+
+  .card-mokepon img {
+    width: 75%;
   }
 
   .btn-ataques {
@@ -208,6 +230,7 @@ input {
     align-items: center;
     box-sizing: border-box;
     margin-bottom: 5px;
+    font-size: 16px;
   }
 
   #mensajes {
@@ -225,5 +248,27 @@ input {
     grid-template-columns: 150px 150px;
     align-items: center;
     text-align: center;
+  }
+
+  #mapa-canvas button {
+    width: 100px;
+    height: 50px;
+    margin-top: 5px;
+    color: #f5eaea;
+    background-color: #dc5f00;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  #mapa-canvas button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    justify-content: center;
   }
 }
