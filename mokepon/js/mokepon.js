@@ -110,7 +110,23 @@ hipodoge.ataques.push(
   { id: "btn-tierra", nombre: "Tierra 🌿" }
 );
 
+hipodogeEnemigo.ataques.push(
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" }
+);
+
 capipepo.ataques.push(
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" }
+);
+
+capipepoEnemigo.ataques.push(
   { id: "btn-tierra", nombre: "Tierra 🌿" },
   { id: "btn-tierra", nombre: "Tierra 🌿" },
   { id: "btn-tierra", nombre: "Tierra 🌿" },
@@ -126,7 +142,23 @@ ratigueya.ataques.push(
   { id: "btn-tierra", nombre: "Tierra 🌿" }
 );
 
+ratigueyaEnemigo.ataques.push(
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" }
+);
+
 tucapalma.ataques.push(
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" }
+);
+
+tucapalmaEnemigo.ataques.push(
   { id: "btn-agua", nombre: "Agua 💧" },
   { id: "btn-agua", nombre: "Agua 💧" },
   { id: "btn-tierra", nombre: "Tierra 🌿" },
@@ -142,7 +174,23 @@ pydos.ataques.push(
   { id: "btn-agua", nombre: "Agua 💧" }
 );
 
+pydosEnemigo.ataques.push(
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" },
+  { id: "btn-agua", nombre: "Agua 💧" }
+);
+
 langostelvis.ataques.push(
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-fuego", nombre: "Fuego 🔥" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-agua", nombre: "Agua 💧" },
+  { id: "btn-tierra", nombre: "Tierra 🌿" }
+);
+
+langostelvisEnemigo.ataques.push(
   { id: "btn-fuego", nombre: "Fuego 🔥" },
   { id: "btn-fuego", nombre: "Fuego 🔥" },
   { id: "btn-agua", nombre: "Agua 💧" },
@@ -213,7 +261,7 @@ function seleccionarMokeponJugador() {
   extraerAtaque(mokeponJugador);
   $seccionCanvas.style.display = "flex";
   inciarMapa();
-  seleccionarMokeponEnemigo();
+  
 }
 
 function extraerAtaque(mokeponJugador) {
@@ -264,11 +312,9 @@ function secuenciaAtaques() {
   });
 }
 
-function seleccionarMokeponEnemigo() {
-  let mokeponAleatorio = aleatorio(0, mokepones.length);
-
-  $spanMokeponEnemigo.innerHTML = mokepones[mokeponAleatorio].nombre;
-  ataqueMokeponEnemigo = mokepones[mokeponAleatorio].ataques;
+function seleccionarMokeponEnemigo(enemigo) {
+  $spanMokeponEnemigo.innerHTML = enemigo.nombre;
+  ataqueMokeponEnemigo = enemigo.ataques;
 
   secuenciaAtaques();
 }
@@ -438,7 +484,6 @@ function inciarMapa() {
   $canvas.width = 600;
   $canvas.height = 400;
   mokeponJugadorObjeto = extrarObjetoMokepon(mokeponJugador);
-  console.log(mokeponJugadorObjeto, mokeponJugador);
 
   intervalo = setInterval(pintarCanvas, 50);
 
@@ -474,7 +519,10 @@ function revisarColision(enemigo) {
   }
 
   detenerMovimiento();
-  alert(`Hay una colisión con ${enemigo.nombre}`);
+  clearInterval(intervalo);
+  $seccionAtaques.style.display = "flex";
+  $seccionCanvas.style.display = "none";
+  seleccionarMokeponEnemigo(enemigo);
 }
 
 window.addEventListener("load", iniciarJuego);
