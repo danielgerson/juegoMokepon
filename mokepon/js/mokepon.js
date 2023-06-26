@@ -242,6 +242,26 @@ function iniciarJuego() {
   $btnSeleccionar.addEventListener("click", seleccionarMokeponJugador);
 
   $btnReiniciar.addEventListener("click", reiniciar);
+
+  unirseAlJuego();
+}
+
+function unirseAlJuego() {
+  fetch("http://localhost:8080/unirse",
+  {
+    method: 'GET'
+  }).then(function(res) {
+    /* console.log(res); */
+
+    if(res.ok) {
+      res.text()
+      .then(function (respuesta) {
+        console.log(respuesta);
+      })
+    }
+  })
+
+
 }
 
 function seleccionarMokeponJugador() {
