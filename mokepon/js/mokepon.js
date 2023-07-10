@@ -42,6 +42,7 @@ let mokeponJugadorObjeto;
 let ataqueJugador = [];
 let victoriasJugador = 0;
 let indexJugador;
+let jugadorId = null;
 
 /* Variables PC */
 let ataqueMokeponEnemigo;
@@ -257,11 +258,10 @@ function unirseAlJuego() {
       res.text()
       .then(function (respuesta) {
         console.log(respuesta);
+        jugadorId = respuesta;
       })
     }
   })
-
-
 }
 
 function seleccionarMokeponJugador() {
@@ -291,10 +291,24 @@ function seleccionarMokeponJugador() {
     $seccionAtaques.style.display = "none";
   }
 
+  seleccionarMokeponPeticion(mokeponJugador);
+
   extraerAtaque(mokeponJugador);
   $seccionCanvas.style.display = "flex";
   inciarMapa();
   
+}
+
+function seleccionarMokeponPeticion(mokeponJugador) {
+  fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mokepon: mokeponJugador
+    })
+  })
 }
 
 function extraerAtaque(mokeponJugador) {
