@@ -471,6 +471,8 @@ function pintarCanvas() {
 
   mokeponJugadorObjeto.pintarMokepones();
 
+  enviarPosicion( mokeponJugadorObjeto.x, mokeponJugadorObjeto.y);
+
   hipodogeEnemigo.pintarMokepones();
   capipepoEnemigo.pintarMokepones();
   ratigueyaEnemigo.pintarMokepones();
@@ -486,6 +488,19 @@ function pintarCanvas() {
     revisarColision(pydosEnemigo);
     revisarColision(langostelvisEnemigo);
   }
+}
+
+function enviarPosicion(x, y) {
+  fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      x,
+      y
+    })
+  })
 }
 
 function moverDerecha() {
