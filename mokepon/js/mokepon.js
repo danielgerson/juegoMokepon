@@ -45,6 +45,7 @@ let indexJugador;
 let jugadorId = null;
 
 /* Variables PC */
+let mokeponesEnemigos = [];
 let ataqueMokeponEnemigo;
 let ataqueEnemigo = [];
 let victoriasEnemigo = 0;
@@ -430,14 +431,18 @@ function pintarCanvas() {
 
   enviarPosicion( mokeponJugadorObjeto.x, mokeponJugadorObjeto.y);
 
-  /* if(mokeponJugadorObjeto.velocidadX !== 0 || mokeponJugadorObjeto.velocidadY !== 0) {
+  mokeponesEnemigos.forEach(function (mokepon) {
+    mokepon.pintarMokepones();
+  })
+
+  if(mokeponJugadorObjeto.velocidadX !== 0 || mokeponJugadorObjeto.velocidadY !== 0) {
     revisarColision(hipodogeEnemigo);
     revisarColision(capipepoEnemigo);
     revisarColision(ratigueyaEnemigo);
     revisarColision(tucapalmaEnemigo);
     revisarColision(pydosEnemigo);
     revisarColision(langostelvisEnemigo);
-  } */
+  }
 }
 
 function enviarPosicion(x, y) {
@@ -458,7 +463,7 @@ function enviarPosicion(x, y) {
         console.log(enemigos);
         
         // Mokepones enemigos
-        enemigos.forEach(function(enemigoServer) {
+        mokeponesEnemigos = enemigos.map(function(enemigoServer) {
           let mokeponEnemigo = null;
           const mokeponNombre = enemigoServer.mokepon.nombre || "";
           if (mokeponNombre === "Hipodoge") {
@@ -478,7 +483,7 @@ function enviarPosicion(x, y) {
             mokeponEnemigo.x = enemigoServer.x;
             mokeponEnemigo.y = enemigoServer.y;
 
-            mokeponEnemigo.pintarMokepones();
+            return mokeponEnemigo
           })
         })
     }
