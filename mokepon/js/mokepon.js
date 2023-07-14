@@ -332,6 +332,23 @@ function enviarAtaques() {
     })
   })
 
+  intervalo = setInterval(obtenerAtaques, 50)
+
+}
+
+function obtenerAtaques() {
+  fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+    .then(function (res) {
+      if (res.ok) {
+        res.json()
+          .then(function ({ ataques }) {
+            if (ataques.length === 5) {
+              ataqueEnemigo = ataques;
+              combate();
+            }
+          })
+      }
+    })
 }
 
 function seleccionarMokeponEnemigo(enemigo) {
@@ -367,6 +384,8 @@ function indexAtaques(jugador, enemigo) {
 }
 
 function combate() {
+  clearInterval(intervalo);
+
   for (let index = 0; index < ataqueJugador.length; index++) {
     if (ataqueJugador[index] == ataqueEnemigo[index]) {
       indexAtaques(index, index);
@@ -449,9 +468,11 @@ function pintarCanvas() {
   enviarPosicion( mokeponJugadorObjeto.x, mokeponJugadorObjeto.y);
 
   mokeponesEnemigos.forEach(function (mokepon) {
-    mokepon.pintarMokepones();
+    if (mokepon != undefined) {
+      mokepon.pintarMokepones();
+      revisarColision(mokepon);
+    }
 
-    revisarColision(mokepon);
   })
 }
 
@@ -475,24 +496,27 @@ function enviarPosicion(x, y) {
         // Mokepones enemigos
         mokeponesEnemigos = enemigos.map(function(enemigoServer) {
           let mokeponEnemigo = null;
-          const mokeponNombre = enemigoServer.mokepon.nombre || "";
-          if (mokeponNombre === "Hipodoge") {
-              mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png", enemigo.id);
-            } else if (mokeponNombre === "Capipepo") {
-              mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png", enemigo.id);
-            } else if (mokeponNombre === "Ratigueya") {
-              mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png", enemigo.id);
-            } else if(mokeponNombre === "Tucapalma") {
-              mokeponEnemigo = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png", enemigo.id);
-            } else if (mokeponNombre === "Pydos") {
-              mokeponEnemigo = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png", enemigo.id);
-            } else if (mokeponNombre === "Langostelvis") {
-              mokeponEnemigo = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png", enemigo.id);
-            }
-            
-            mokeponEnemigo.x = enemigoServer.x;
-            mokeponEnemigo.y = enemigoServer.y;
 
+          if (enemigoServer.mokepon != undefined) {
+
+            const mokeponNombre = enemigoServer.mokepon.nombre || "";
+            if (mokeponNombre === "Hipodoge") {
+                mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.webp", 3, "./assets/hipodoge.png", enemigoServer.id);
+              } else if (mokeponNombre === "Capipepo") {
+                mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.webp", 3, "./assets/capipepo.png", enemigoServer.id);
+              } else if (mokeponNombre === "Ratigueya") {
+                mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.webp", 3, "./assets/ratigueya.png", enemigoServer.id);
+              } else if(mokeponNombre === "Tucapalma") {
+                mokeponEnemigo = new Mokepon("Tucapalma", "./assets/mokepons_mokepon_tucapalma_attack.png", 3, "./assets/tucapalma.png", enemigoServer.id);
+              } else if (mokeponNombre === "Pydos") {
+                mokeponEnemigo = new Mokepon("Pydos", "./assets/mokepons_mokepon_pydos_attack.png", 3, "./assets/pydos.png", enemigoServer.id);
+              } else if (mokeponNombre === "Langostelvis") {
+                mokeponEnemigo = new Mokepon("Langostelvis","./assets/mokepons_mokepon_langostelvis_attack.png",3, "./assets/langostelvis.png", enemigoServer.id);
+              }
+              
+              mokeponEnemigo.x = enemigoServer.x;
+              mokeponEnemigo.y = enemigoServer.y;
+          }
             return mokeponEnemigo
           })
         })
@@ -506,7 +530,6 @@ function moverDerecha() {
 
 function moverAbajo() {
   mokeponJugadorObjeto.velocidadY = 5;
-  pintarCanvas();
 }
 
 function moverIzquierda() {
