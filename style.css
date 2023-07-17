@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+  font-family: 'Righteous', cursive;
+  background-image: url("./assets/fondo-mokepon.png");
+}
+
+#mokepones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  color: #f5eaea;
+  font-size: 40px;
+}
+
+.subtitulo {
+  color: #f5eaea;
+  font-size: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.card-mokepon {
+  width: 200px;
+  height: 250px;
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.card-mokepon img {
+  width: 100%;
+}
+input:checked + label, .card-mokepon:hover {
+  cursor: pointer;
+  background-color: #dc5f00;
+}
+
+input {
+  display: none;
+}
+
+#btn-seleccionar {
+  width: 300px;
+  height: 60px;
+  margin-top: 30px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+  font-size: 20px;
+}
+
+#btn-seleccionar:hover {
+  cursor: pointer;
+  background-color: #3c4048;
+}
+
+#ataques {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f5eaea;
+}
+
+.btn-ataques {
+  width: 120px;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-right: 5px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  box-shadow: 7px 5px 5px black;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.btn-ataques:hover {
+  cursor: pointer;
+  background-color: #3c4048;
+}
+
+#mensajes {
+  width: 400px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  font-family: 'Righteous', cursive;
+  font-size: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#btn-reiniciar {
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #dc5f00;
+  color: #f5eaea;
+  box-shadow: 5px 5px 7px black;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+  transition: all 0.7s ease;
+  font-size: 20px;
+}
+
+#btn-reiniciar:hover {
+  cursor: pointer;
+  background-color: #f5eaea;
+  color: #dc5f00;
+}
+
+.container-vidas {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.container-mensaje {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.vidas {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+.mokepon-seleccionado {
+  color: #f5eaea;
+  background-color: #3c4048;
+  font-family: 'Righteous', cursive;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#vidas-jugador, #vidas-enemigo{
+  font-size: 44px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#mokepon-jugador, #mokepon-enemigo {
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+#mapa-canvas {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#mapa-canvas button {
+  width: 120px;
+  height: 50px;
+  margin-top: 5px;
+  color: #f5eaea;
+  background-color: #dc5f00;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Righteous', cursive;
+  font-size: 18px;
+}
+
+@media (max-width: 660px) {
+  .titulo {
+    font-size: 32px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 150px 150px;
+  }
+  
+  .card-mokepon {
+    width: 150px;
+    height: 180px;
+  }
+
+  .card-mokepon img {
+    width: 75%;
+  }
+
+  .btn-ataques {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  #mensajes {
+    width: 300px;
+  }
+
+  #btn-reiniciar:hover {
+    cursor: pointer;
+    background-color: #f5eaea;
+    color: #dc5f00;
+  }
+
+  .container-vidas {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    align-items: center;
+    text-align: center;
+  }
+
+  #mapa-canvas button {
+    width: 100px;
+    height: 50px;
+    margin-top: 5px;
+    color: #f5eaea;
+    background-color: #dc5f00;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    user-select: none;
+  }
+}
+
+@media (max-width: 400px) {
+  #mapa-canvas button{
+    width: 80px;
+    height: 40px;
+    font-size: 14px;
+    margin-top: 10px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    justify-content: space-around; */
+  }
+}
