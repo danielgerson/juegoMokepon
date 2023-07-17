@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-pages -d public"
+    "deploy": "gh-pages -d 00_Programacion Basica"
   },
   "author": "",
   "license": "ISC",
